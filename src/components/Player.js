@@ -5,12 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 
-const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
+const Player = ({ currentSong, isPlaying, setIsPlaying,audioRef, setSongInfo, songInfo }) => {
 
-    const [songInfo,setSongInfo] = useState({
-        currentTime: 0,
-        duration: 0,
-    })
+   
     const timeUpdateHandler = (e) => {
         const current = e.target.currentTime;
         const duration = e.target.duration;
@@ -27,7 +24,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
     }
 
 
-    const audioRef = useRef(null);
+
     const playSongHandler = () => {
         if (isPlaying) {
           audioRef.current.pause();
