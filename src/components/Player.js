@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 
-const Player = ({ currentSong, isPlaying, setIsPlaying,audioRef, setSongInfo, songInfo }) => {
+const Player = ({ songs,  currentSong, isPlaying, setIsPlaying,audioRef, setSongInfo, songInfo, setCurrentSong }) => {
 
    
     const timeUpdateHandler = (e) => {
@@ -22,8 +22,19 @@ const Player = ({ currentSong, isPlaying, setIsPlaying,audioRef, setSongInfo, so
         audioRef.current.currentTime = e.target.value;
         setSongInfo({...songInfo, currentTime: e.target.value})
     }
-
-
+    const skipTrackHandler = (direction) => {
+        let currentIndex = songs.findIndex((song) => song.id === currentSong.id )
+        if(direction === 'skip-forward'){
+            setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+        }
+        if(direction === 'skip-back'){
+            if((currentIndex - 1) % songs.length === -1){
+                setCurrentSong(songs[songs.length -1])
+                return;
+            }
+            setCurrentSong(songs[(currentIndex - 1) % songs.length]);
+        }
+    }
 
     const playSongHandler = () => {
         if (isPlaying) {
@@ -44,9 +55,9 @@ const Player = ({ currentSong, isPlaying, setIsPlaying,audioRef, setSongInfo, so
             </div>
 
             <div className="play-control">
-                <FontAwesomeIcon className="skipback" size="2x" icon={faAngleLeft} />
+                <FontAwesomeIcon onClick={() => skipTrackHandler('skip-back')} className="skipback" size="2x" icon={faAngleLeft} />
                 <FontAwesomeIcon className="play" size="2x" icon={isPlaying ? faPause : faPlay} onClick={playSongHandler}/>
-                <FontAwesomeIcon className="skipforward" size="2x" icon={faAngleRight} />
+                <FontAwesomeIcon onClick={() => skipTrackHandler('skip-forward')} className="skipforward" size="2x" icon={faAngleRight} />
             </div>
 
             <audio ref={audioRef} src={currentSong.audio} onTimeUpdate={timeUpdateHandler} onLoadedMetadata={timeUpdateHandler}></audio>

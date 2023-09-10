@@ -9,7 +9,7 @@
     transform: translateY(-100%);
     transition: all 0.5s ease;
     opacity: 0;
-   
+
     h2{
         padding: 1rem 7rem;
     }
@@ -58,4 +58,9 @@
 
 .selected{
     background-color: rgb(155, 207, 242);
+}
+
+.active-library{
+    transform: translateX(0);
+    opacity: 10;
 }
