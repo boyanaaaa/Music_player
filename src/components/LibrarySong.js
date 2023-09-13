@@ -2,7 +2,7 @@ import React from 'react';
 import { playAudio } from '../util';
 
 
-const LibrarySong = ({ song, songs, setCurrentSong, id, audioRef, isPlaying, setSong}) => {
+const LibrarySong = ({ song, songs, setCurrentSong, id, audioRef, isPlaying, setSongs}) => {
     const songSelectHandler = async () => {
         const selectedSong = songs.filter((state) => state.id === id);
         await setCurrentSong(selectedSong[0]);
@@ -20,7 +20,7 @@ const LibrarySong = ({ song, songs, setCurrentSong, id, audioRef, isPlaying, set
                 }
             }
         })
-        setSong(newSongs);
+        setSongs(newSongs);
 
        if(isPlaying) audioRef.current.play();
         

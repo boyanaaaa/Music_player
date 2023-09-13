@@ -1,15 +1,16 @@
 .library{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 20rem;
-    height: 100%;
-    box-shadow: 2px 2px 50px rgb(204,204,204);
-    overflow: scroll;
-    transform: translateY(-100%);
-    transition: all 0.5s ease;
-    opacity: 0;
-
+  position: fixed;
+  box-shadow: 2px 2px 50px rgb(221, 221, 221);
+  border-radius: 1rem;
+  top: 0;
+  left: 0;
+  width: 20rem;
+  height: 100%;
+  overflow: scroll;
+  background: white;
+  transform: translateX(-100%);
+  transition: all 0.5s ease;
+  opacity: 0;
     h2{
         padding: 1rem 7rem;
     }
@@ -20,6 +21,7 @@
     align-items: center;
     padding: 1rem 2rem 1rem 2rem;
     cursor: pointer;
+    transition: background 0.5s ease;
     img{
         width: 30%;
         border-radius: 50%;
@@ -63,4 +65,11 @@
 .active-library{
     transform: translateX(0);
     opacity: 10;
+}
+
+
+@media screen and (max-width: 768px){
+    .library{
+        width: 100%;
+    }
 }
